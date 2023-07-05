@@ -1,0 +1,54 @@
+# Arquivos de compilação
+*.dll
+*.exe
+*.pdb
+
+# Arquivos de publicação
+publish/
+
+# Pasta de dependências
+packages/
+
+# Arquivos gerados pelo Visual Studio
+*.user
+*.vs/
+*_iis.xml
+*.suo
+*.cache
+*.sln.docstates
+*.csproj.user
+
+# Arquivos gerados pelo ReSharper
+_ReSharper.*/
+
+# Arquivos de log
+*.log
+
+# Pasta temporária
+obj/
+
+# Arquivos do NuGet
+*.nuget.props
+*.nuget.targets
+
+# Arquivos gerados pela documentação
+_documentation/
+
+# Pasta de configuração local do IIS Express
+.vs/config/
+
+# Arquivos de configuração do Visual Studio
+*.config
+
+# Arquivos de configuração do IIS
+**/web.config
+**/app.config
+**/appSettings.config
+
+# Arquivos de log do Visual Studio
+*.vspscc
+*.vssscc
+
+# Arquivos de capturas de tela
+*.png
+*.jpg
