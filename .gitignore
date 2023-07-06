@@ -3,8 +3,9 @@
 *.exe
 *.pdb
 
-# Arquivos de publicação
+# Pastas
 publish/
+bin/
 
 # Pasta de dependências
 packages/
