@@ -17,39 +17,38 @@ namespace apiVeiculos.Repositorios
             DbSet = db.Set<TEntidade>();
         }
 
-        public Task AddAsync(TEntidade entidade)
+        public async Task AddAsync(TEntidade entidade)
         {
-            throw new NotImplementedException();
+            DbSet.AddAsync(entidade);
+            await _db.SaveChangesAsync();
         }
 
-        public Task AtualizeAsync(TEntidade entidade)
+        public async Task RemovaAsync(int id)
         {
-            throw new NotImplementedException();
+            var entidade = await DbSet.FindAsync(id);
+            DbSet.Remove(entidade);
+            await _db.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<TEntidade>> ConsulteParcialAsync(Expression<Func<TEntidade, bool>> expression)
+        public async Task AtualizeAsync(TEntidade entidade)
         {
-            throw new NotImplementedException();
+            DbSet.Update(entidade);
+            await _db.SaveChangesAsync();
         }
 
-        public Task<TEntidade> ConsultePorIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<TEntidade>> ConsulteParcialAsync(Expression<Func<TEntidade, bool>> expression) =>
+            await DbSet.AsNoTracking().Where(expression).ToListAsync();
 
-        public Task<List<TEntidade>> ConsulteTodosRegistrosAsync(TEntidade entidade)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<TEntidade> ConsultePorIdAsync(int id) =>
+            await DbSet.FindAsync(id);
+
+        public async Task<List<TEntidade>> ConsulteTodosRegistrosAsync(TEntidade entidade) =>
+            await DbSet.ToListAsync();
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _db?.Dispose();
         }
 
-        public Task RemovaAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
