@@ -24,7 +24,7 @@ namespace apiVeiculos.Infraestrutura
                    .WithOne(b => b.Categoria)
                    .HasForeignKey(b => b.CategoriaId);
 
-            // Definição dos dados iniciais da categoria
+            // Definição dos dados iniciais da tabela de categoria
             builder.Entity<Categoria>()
                 .HasData(
                     new Categoria(1, "Rodoviário"),
