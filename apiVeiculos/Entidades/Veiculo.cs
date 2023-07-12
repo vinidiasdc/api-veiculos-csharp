@@ -1,6 +1,6 @@
 ﻿namespace apiVeiculos.Entidades
 {
-    public abstract class Veiculo : EntidadeComId
+    public class Veiculo : EntidadeComId
     {
         public string? Nome { get; set; }
         public string? Marca { get; set; }

@@ -42,7 +42,7 @@ namespace apiVeiculos.Repositorios
         public async Task<TEntidade> ConsultePorIdAsync(int id) =>
             await DbSet.FindAsync(id);
 
-        public async Task<List<TEntidade>> ConsulteTodosRegistrosAsync(TEntidade entidade) =>
+        public async Task<List<TEntidade>> ConsulteTodosRegistrosAsync() =>
             await DbSet.ToListAsync();
 
         public void Dispose()
