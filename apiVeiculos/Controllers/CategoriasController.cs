@@ -1,4 +1,6 @@
 ﻿using apiVeiculos.DTOs;
+using apiVeiculos.Entidades;
+using apiVeiculos.Repositorios;
 using apiVeiculos.Repositorios.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -21,13 +23,14 @@ namespace apiVeiculos.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategoriaDTO>>> ConsulteCategorias()
         {
-            var categorias = _categoriasRepository.ConsulteTodosRegistrosAsync();
-            if(categorias is null )
+            IEnumerable<Categoria> categorias = await _categoriasRepository.ConsulteTodosRegistrosAsync();
+
+            if (categorias is null)
             {
                 return NotFound("Categorias não encontradas!");
             }
 
-            var categoriasDTO = _mapper.Map<IEnumerable<CategoriaDTO>>(categorias);
+            IEnumerable<CategoriaDTO> categoriasDTO = _mapper.Map<IEnumerable<CategoriaDTO>>(categorias);
 
             return Ok(categoriasDTO);
         }

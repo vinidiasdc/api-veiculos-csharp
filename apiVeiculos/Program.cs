@@ -22,7 +22,6 @@ builder.Services.AddScoped<IVeiculoRepository, VeiculoRepository>();
 
 builder.Services.AddAutoMapper(typeof(EntidadeParaDTOConversor));
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
