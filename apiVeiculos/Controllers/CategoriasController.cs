@@ -62,7 +62,7 @@ namespace apiVeiculos.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Alterar(int id, [FromBody] CategoriaDTO categoriaDTO) {
+        public async Task<ActionResult> Editar(int id, [FromBody] CategoriaDTO categoriaDTO) {
             if(id != categoriaDTO.Id)
                 return BadRequest();
 
@@ -74,6 +74,20 @@ namespace apiVeiculos.Controllers
             await _categoriasRepository.AtualizeAsync(categoria);
 
             return Ok(categoriaDTO); 
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Excluir(int id) {
+            
+            Categoria categoria = await _categoriasRepository.ConsultePorIdAsync(id);
+
+            if(categoria is null) {
+                return NotFound("Informe um Id válido");
+            }
+
+            await _categoriasRepository.RemovaAsync(id);
+
+            return Ok(categoria);
         }
     }
 }
