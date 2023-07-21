@@ -6,6 +6,6 @@ namespace apiVeiculos.Repositorios.Interfaces
     {
         Task<IEnumerable<Veiculo>> ConsulteVeiculoPorCategoriaAsync(int categoriaId);
 
-        Task<IEnumerable<Veiculo>> ConsulteVeiculoPorTermoAsync(string termoPesquisa);
+        Task<IEnumerable<Veiculo>> ConsulteVeiculoComCategoriaAsync(string termoPesquisa);
     }
 }

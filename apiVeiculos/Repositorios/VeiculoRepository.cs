@@ -14,12 +14,13 @@ namespace apiVeiculos.Repositorios
             return await _db.Veiculos.Where(v => v.CategoriaId == categoriaId).ToListAsync();
         }
 
-        public async Task<IEnumerable<Veiculo>> ConsulteVeiculoPorTermoAsync(string termoPesquisa)
+        public async Task<IEnumerable<Veiculo>> ConsulteVeiculoComCategoriaAsync(string termoPesquisa)
         {
             return await _db.Veiculos.AsNoTracking()
                 .Include(b => b.Categoria)
                 .Where(b => b.Nome.Contains(termoPesquisa) ||
-                            b.Marca.Contains(termoPesquisa))
+                            b.Marca.Contains(termoPesquisa) ||
+                            b.Categoria.Nome.Contains(termoPesquisa))
                 .ToListAsync();
         }
     }

@@ -36,7 +36,7 @@ namespace apiVeiculos.Repositorios
             await _db.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<TEntidade>> ConsulteParcialAsync(Expression<Func<TEntidade, bool>> expression) =>
+        public async Task<IEnumerable<TEntidade>> ConsulteAsync(Expression<Func<TEntidade, bool>> expression) =>
             await DbSet.AsNoTracking().Where(expression).ToListAsync();
 
         public async Task<TEntidade> ConsultePorIdAsync(int id) =>

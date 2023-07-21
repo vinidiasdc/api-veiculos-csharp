@@ -51,7 +51,7 @@ namespace apiVeiculos.Controllers
             return Ok(veiculoDto);
         }
 
-        [HttpPut("{id:int}")]
+        [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Editar(int id, [FromBody] VeiculoDTO veiculoDTO) {
@@ -97,6 +97,54 @@ namespace apiVeiculos.Controllers
             await _veiculosRepository.RemovaAsync(id);
 
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("ConsulteVeiculosDeCategoria/{categoriaId:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> ConsulteVeiculosDeCategoria(int categoriaId) {
+            IEnumerable<Veiculo> veiculos = await _veiculosRepository.ConsulteVeiculoPorCategoriaAsync(categoriaId);
+
+            if(veiculos is null) {
+                return NotFound($"Nenhum veículo encontrado para a categoria de {categoriaId}");
+            }
+
+            IEnumerable<VeiculoDTO> veiculoDtos = _mapper.Map<IEnumerable<VeiculoDTO>>(veiculos);
+
+            return Ok(veiculoDtos);
+        }
+
+        [HttpGet]
+        [Route("ConsultePorNome/{textoNome}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> ConsultePorNome(string textoNome) {
+            IEnumerable<Veiculo> veiculosEncontrados = await _veiculosRepository.ConsulteAsync(v => v.Nome.Contains(textoNome));
+
+            if(veiculosEncontrados is null) {
+                return NotFound("Nenhum registro encontrado com este nome");
+            }
+
+            IEnumerable<VeiculoDTO> veiculoDtos = _mapper.Map<IEnumerable<VeiculoDTO>>(veiculosEncontrados);
+
+            return Ok(veiculoDtos);
+        }
+
+        [HttpGet]
+        [Route("ConsulteVeiculoComCategoria/{termoPesquisa}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<VeiculoCategoriaDTO>>> ConsulteVeiculoComCategoria(string termoPesquisa) {
+            IEnumerable<Veiculo> veiculosEncontrados = await _veiculosRepository.ConsulteVeiculoComCategoriaAsync(termoPesquisa);
+
+            if(!veiculosEncontrados.Any()) {
+                return NotFound($"Nenhum veiculo com nome/marca {termoPesquisa} encontrado!");
+            }
+
+            IEnumerable<VeiculoCategoriaDTO> veiculosDtos = _mapper.Map<IEnumerable<VeiculoCategoriaDTO>>(veiculosEncontrados);
+
+            return Ok(veiculosDtos);
         }
     }
 }

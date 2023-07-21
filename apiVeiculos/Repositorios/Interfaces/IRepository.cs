@@ -10,6 +10,6 @@ namespace apiVeiculos.Repositorios.Interfaces
         Task<T> ConsultePorIdAsync(int id);
         Task AtualizeAsync(T entidade);
         Task RemovaAsync(int id);
-        Task<IEnumerable<T>> ConsulteParcialAsync(Expression<Func<T, bool>> expression);
+        Task<IEnumerable<T>> ConsulteAsync(Expression<Func<T, bool>> expression);
     }
 }
