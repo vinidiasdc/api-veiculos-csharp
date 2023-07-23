@@ -1,3 +1,4 @@
+using System.Text;
 using apiVeiculos.Infraestrutura;
 using apiVeiculos.Mapeamento;
 using apiVeiculos.Repositorios;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-using System.Text;
+using Microsoft.OpenApi.Models;
 using apiVeiculos.Entidades.Autenticacao;
 using Microsoft.AspNetCore.Identity;
 
@@ -39,6 +40,34 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
+
+builder.Services.AddSwaggerGen(c => {
+    c.SwaggerDoc("v1", new OpenApiInfo {Title = "apiveiculos", Version="v1"});
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme() {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = @"JWT Authorization Header usando o schema Bearer \r\n\r\n Informe 'Bearer'[space].
+        Exemplo:\'Bearer 12345abcde\'",
+            
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
+
 builder.Services.AddIdentity<ApplicationUsuario, IdentityRole>()
     .AddEntityFrameworkStores<ConexaoContext>()
     .AddDefaultTokenProviders();

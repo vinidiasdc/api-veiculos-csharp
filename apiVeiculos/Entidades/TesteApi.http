@@ -1,0 +1,9 @@
+POST http://localhost:5283/api/usuarios/login
+Content-Type: application/json
+{
+    "email": "admin@localhost",
+    "senha": "Teste#123"
+}
+
+GET http://localhost:5283/api/categorias
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluQGxvY2FsaG9zdCIsInZpbmljaXVzIjoidGVzdGUiLCJhdWQiOiJWSU5JQ0lVU19BVURJRU5DRSIsImlzcyI6IlZJTklDSVVTX0lTU1VFUiIsImp0aSI6ImE2YTk2ODEzLTcxZmYtNGQyMC1hMWNiLTIzYWJkMDk2OTY5YyIsImV4cCI6MTY5MDE0MTEyOX0.QzQS_4FFRoMsS41DbamUwmsVud0mRIWIgD_S3DtvRo0
