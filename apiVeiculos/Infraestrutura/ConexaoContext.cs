@@ -1,9 +1,11 @@
 ﻿using apiVeiculos.Entidades;
+using apiVeiculos.Entidades.Autenticacao;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace apiVeiculos.Infraestrutura
 {
-    public class ConexaoContext : DbContext
+    public class ConexaoContext : IdentityDbContext<ApplicationUsuario>
     {
         public ConexaoContext(DbContextOptions<ConexaoContext> options) : base(options) { }
         public DbSet<Veiculo> Veiculos { get; set; }

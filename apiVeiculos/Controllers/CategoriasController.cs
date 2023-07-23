@@ -2,11 +2,13 @@
 using apiVeiculos.Entidades;
 using apiVeiculos.Repositorios.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace apiVeiculos.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
     public class CategoriasController : ControllerBase
     {

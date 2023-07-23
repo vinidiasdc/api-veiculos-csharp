@@ -1,4 +1,4 @@
-# Arquivos de compila��o
+# Arquivos de compilacao
 *.dll
 *.exe
 *.pdb
@@ -7,7 +7,7 @@
 publish/
 bin/
 
-# Pasta de depend�ncias
+# Pasta de dependencias
 packages/
 
 # Arquivos gerados pelo Visual Studio
@@ -25,23 +25,23 @@ _ReSharper.*/
 # Arquivos de log
 *.log
 
-# Pasta tempor�ria
+# Pasta temporaria
 obj/
 
 # Arquivos do NuGet
 *.nuget.props
 *.nuget.targets
 
-# Arquivos gerados pela documenta��o
+# Arquivos gerados pela documentacao
 _documentation/
 
-# Pasta de configura��o local do IIS Express
+# Pasta de configuracao local do IIS Express
 .vs/config/
 
-# Arquivos de configura��o do Visual Studio
+# Arquivos de configuracao do Visual Studio
 *.config
 
-# Arquivos de configura��o do IIS
+# Arquivos de configuracao do IIS
 **/web.config
 **/app.config
 **/appSettings.config
@@ -49,9 +49,11 @@ _documentation/
 # Arquivos de log do Visual Studio
 *.vspscc
 *.vssscc
+*.vscode
 
 # Arquivos de capturas de tela
 *.png
 *.jpg
+
 apiVeiculos/.vscode/launch.json
 apiVeiculos/.vscode/tasks.json
