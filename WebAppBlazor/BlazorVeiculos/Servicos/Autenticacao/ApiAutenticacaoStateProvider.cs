@@ -81,7 +81,7 @@ namespace BlazorVeiculos.Servicos.Autenticacao
             return false;   
         }
 
-        private void DefinaUsuarioComoNaoLogado()
+        public void DefinaUsuarioComoNaoLogado()
         {
             var usuarioAnonimo = new ClaimsPrincipal(new ClaimsIdentity());
             var authState = Task.FromResult(new AuthenticationState(usuarioAnonimo));

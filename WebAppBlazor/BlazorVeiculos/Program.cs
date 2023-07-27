@@ -17,6 +17,7 @@ builder.Services.AddHttpClient("ApiVeiculos", options =>
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddAuthorizationCore();
 
-builder.Services.AddScoped<AuthenticationStateProvider, ApiAutenticacaoStateProvider>();    
+builder.Services.AddScoped<AuthenticationStateProvider, ApiAutenticacaoStateProvider>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 await builder.Build().RunAsync();
